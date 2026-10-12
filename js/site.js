@@ -89,7 +89,7 @@
           if (res.success) {
             form.reset();
             status.className = 'form-status ok';
-            status.textContent = 'Thanks — your request was sent. We’ll get back to you shortly.';
+            status.textContent = form.getAttribute('data-success') || 'Thanks — your request was sent. We’ll get back to you shortly.';
           } else { throw new Error(res.message || 'Send failed'); }
         })
         .catch(function () {

@@ -194,12 +194,13 @@ def layout(filename, title, description, body, schema=True):
           <li>{S["street"]}<br>{S["city"]}, {S["state"]} {S["zip"]}</li>
           {hours_foot}
           <li><a href="{S["maps_link"]}" target="_blank" rel="noopener">Get directions →</a></li>
+          <li><a href="text-updates.html">Order text updates</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
       <span>© <span id="year">{date.today().year}</span> {S["company"]}. All rights reserved.</span>
-      <span><a href="privacy-policy.html">Privacy Policy</a><a href="sms.html">SMS Terms</a></span>
+      <span><a href="privacy-policy.html">Privacy Policy</a><a href="sms.html">SMS Terms &amp; Conditions</a></span>
     </div>
   </div>
 </footer>
@@ -616,7 +617,7 @@ page_hero("About R2", "Built on decades in the trade.",
     <div>
       <span class="eyebrow">Our story</span>
       <h2>A shop run by people who know the trade.</h2>
-      <p>R2 Fabrication gives our partners one source for fabricated ductwork, industrial items, and specialty needs. Metal workers who have been in the trade for decades run and manage our shop.</p>
+      <p>Team R2 is the trade name of R2 Fabrication, LLC. We give our partners one source for fabricated ductwork, industrial items, and specialty needs. Metal workers who have been in the trade for decades run and manage our shop.</p>
       <p>From the shop floor to upper management, we’ve worked as installers, shop hands, shop foremen, and managers. We understand the business and what it takes to give you and your customers first-class products and service.</p>
       <p>Every day we build items for the HVAC industry, for industrial applications, and for specific products inside and outside HVAC. If you have a product that needs to be fabricated, we want to work with you.</p>
       <!-- IDEA: add founding year and a short founder/leadership note here -->
@@ -791,8 +792,9 @@ page_hero("Contact", "Request a bid",
             <input id="heard" name="heard" type="text">
           </div>
           <div class="full">
-            <label class="consent"><input type="checkbox" name="sms_consent" value="Yes - opted in to SMS order/delivery updates">
-              <span>Optional: text me order and delivery updates from R2 Fabrication, LLC. Message frequency varies (about 3–5 per order). Message and data rates may apply. Reply STOP to cancel, HELP for help. Consent isn’t required to do business with us. See our <a href="sms.html">SMS Terms</a> and <a href="privacy-policy.html">Privacy Policy</a>.</span></label>
+            <input type="hidden" name="sms_consent_text_version" value="contact.html 2026-10-11">
+            <label class="consent"><input type="checkbox" name="sms_consent" value="Yes - agreed to R2 Fabrication order and delivery texts">
+              <span>Optional: I agree to receive order and delivery text messages from R2 Fabrication, LLC (Team R2) at the phone number above, such as order received, ready for pickup, delivery scheduled, and delivered. Message frequency varies, typically 3–5 messages per order. Message and data rates may apply. Reply STOP to cancel or HELP for help. Consent is not a condition of purchase. See our <a href="sms.html">SMS Terms &amp; Conditions</a> and <a href="privacy-policy.html">Privacy Policy</a>.</span></label>
           </div>
           <div class="full">
             <button class="btn btn-primary" type="submit">Send request</button>
@@ -809,6 +811,7 @@ page_hero("Contact", "Request a bid",
         <div class="info-block"><h3>Shop &amp; pickup</h3><p>{S["street"]}<br>{S["city"]}, {S["state"]} {S["zip"]}</p></div>
         {f'<div class="info-block"><h3>Hours</h3><p>{S["hours"]}</p></div>' if S["hours"] else ""}
         <div class="info-block"><h3>Careers</h3><p><a href="careers.html">See open positions →</a></p></div>
+        <div class="info-block"><h3>Order text updates</h3><p><a href="text-updates.html">Sign up for pickup &amp; delivery texts →</a></p></div>
       </div>
       <div id="location">
         <iframe class="map" src="{S["maps_embed"]}" title="Map to R2 Fabrication" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -833,42 +836,133 @@ page_hero("404", "We can’t find that page.", "It may have moved when we rebuil
 # ---------------------------------------------------------------------------
 # PRIVACY + SMS (based on the policies on the current live site — have them reviewed)
 # ---------------------------------------------------------------------------
-PAGES["privacy-policy.html"] = ("Privacy Policy | R2 Fabrication, LLC", "Privacy policy for www.TeamR2.com and the R2 Fabrication SMS program.",
-page_hero("Legal", "Privacy Policy", "Effective date: April 20, 2026", "Privacy Policy") + f'''
+PAGES["privacy-policy.html"] = ("Privacy Policy | R2 Fabrication, LLC", "Privacy policy for www.TeamR2.com and the R2 Fabrication text message (SMS) program.",
+page_hero("Legal", "Privacy Policy", "Effective date: October 11, 2026", "Privacy Policy") + f'''
 <section><div class="container prose">
-<p>{S["company"]} (“R2,” “we,” “us”) respects the privacy of every individual who interacts with our services, including visitors to www.TeamR2.com and participants in our SMS program. By providing personal information or opting in to messages, you agree to this policy.</p>
+<p>{S["company"]} (“R2,” “Team R2,” “we,” “us”) respects the privacy of every individual who interacts with our services, including visitors to www.TeamR2.com and participants in our text message (SMS) program. By providing personal information or opting in to messages, you agree to this policy.</p>
 <h2>Information we collect</h2>
-<ul><li>Contact details such as name, phone number, email, and address</li><li>Project and business information</li><li>Service and transaction records</li><li>Records of communications with us</li><li>Device and usage data collected through cookies</li><li>Records of SMS consent</li></ul>
+<ul><li>Contact details such as name, company, phone number, email, and address</li><li>Project, order, and business information</li><li>Service and transaction records</li><li>Records of communications with us</li><li>Device and usage data collected through cookies</li><li>Records of text message consent, including the date, the phone number, and how consent was given</li></ul>
 <h2>How we collect it</h2>
-<p>Directly from you, through SMS interactions, automatically through website cookies, from third-party sources, and from orders placed in person.</p>
-<h2>SMS / text messaging</h2>
-<p>If you consent to receive texts, we may send messages about appointments, project updates, quotes, and orders or deliveries. Message frequency varies based on your interactions. Message and data rates may apply. Reply STOP at any time to opt out; you will receive one final confirmation message. See our <a href="sms.html">SMS Terms</a>.</p>
+<p>Directly from you, through our website forms, through text message interactions, automatically through website cookies, from third-party sources, and from orders placed in person or by phone.</p>
+<h2>Text messages (SMS)</h2>
+<p>If you opt in to <strong>R2 Fabrication Order &amp; Delivery Updates</strong>, we send text messages about your orders: order received, ready for pickup, delivery scheduled, out for delivery, delivered, schedule changes, and replies to your questions about an order. We do not send marketing or promotional text messages. Message frequency varies by order and is typically 3–5 messages per order. Message and data rates may apply. Reply <strong>STOP</strong> at any time to opt out; you will receive one final confirmation message and no further texts. Reply <strong>HELP</strong> for help, call <a href="tel:{TEL}">{S["phone"]}</a>, or email <a href="mailto:{S["email"]}">{S["email"]}</a>. Consent to receive text messages is not a condition of purchase. R2 team members who opt in also receive work-related text messages, such as schedule changes and shop notices, under the same terms. Full details are in our <a href="sms.html">SMS Terms &amp; Conditions</a>.</p>
 <h2>How we use information</h2>
-<p>To provide our services, communicate about orders, process transactions, send messages you opted in to, respond to inquiries, and comply with legal obligations.</p>
+<p>To provide our services, communicate about orders and deliveries, process transactions, send text messages you opted in to, respond to inquiries, and comply with legal obligations.</p>
 <h2>Sharing</h2>
-<p>We do not sell, rent, or trade your personal information. We share it only with service providers who help us operate, when required by law, or as part of a business transfer. Mobile opt-in data and consent are not shared with third parties for marketing purposes.</p>
+<p>We do not sell, rent, or trade your personal information. We share it only with service providers who help us operate our business (such as our website form and text messaging providers), when required by law, or as part of a business transfer. <strong>Mobile phone numbers and text message opt-in data will not be shared with or sold to third parties or affiliates for marketing or promotional purposes.</strong> Text messaging originator opt-in data and consent will not be shared with any third parties, excluding aggregators and providers of the text messaging services, who use it only to deliver our messages.</p>
 <h2>Security and retention</h2>
-<p>We use reasonable safeguards to protect your information, but no method of electronic transmission or storage is completely secure. We keep information only as long as needed for the purposes above.</p>
+<p>We use reasonable safeguards to protect your information, but no method of electronic transmission or storage is completely secure. We keep information only as long as needed for the purposes above, and we keep records of text message consent and opt-outs for as long as needed to show compliance.</p>
 <h2>Your rights</h2>
-<p>Depending on where you live, you may request access to, correction of, or deletion of your personal information by contacting us.</p>
+<p>Depending on where you live, you may request access to, correction of, or deletion of your personal information by contacting us. You can stop text messages at any time by replying STOP.</p>
+<h2>Changes</h2>
+<p>We may update this policy. The current version is always at <a href="privacy-policy.html">www.teamr2.com/privacy-policy.html</a>.</p>
 <h2>Contact</h2>
-<p>Email: <a href="mailto:{S["email"]}">{S["email"]}</a><br>{S["company"]}, {S["street"]}, {S["city"]}, {S["state"]} {S["zip"]}</p>
+<p>Email: <a href="mailto:{S["email"]}">{S["email"]}</a><br>Phone: <a href="tel:{TEL}">{S["phone"]}</a><br>{S["company"]}, {S["street"]}, {S["city"]}, {S["state"]} {S["zip"]}</p>
 </div></section>''')
 
-PAGES["sms.html"] = ("SMS Terms | R2 Fabrication, LLC", "Terms for the R2 Fabrication order and delivery text message program.",
-page_hero("Legal", "SMS Terms", "R2 Fabrication, LLC order and delivery text notifications", "SMS Terms") + f'''
+PAGES["sms.html"] = ("SMS Terms & Conditions | R2 Fabrication, LLC", "Terms and conditions for R2 Fabrication Order & Delivery Updates, the Team R2 text message program: what we send, how often, how to opt in, and how to stop.",
+page_hero("Legal", "SMS Terms &amp; Conditions", "R2 Fabrication Order &amp; Delivery Updates, a text message program of R2 Fabrication, LLC (Team R2)", "SMS Terms &amp; Conditions") + f'''
 <section><div class="container prose">
+<p class="hint">Last updated: October 11, 2026</p>
 <h2>Program description</h2>
-<p>{S["company"]} sends order-specific text notifications, such as order status and delivery updates, to customers who opt in.</p>
+<p>{S["company"]} (Team R2), {S["street"]}, {S["city"]}, {S["state"]} {S["zip"]}, sends text messages (SMS) to customers who opt in to receive updates about their orders: order received, ready for pickup, delivery scheduled, out for delivery, delivered, schedule changes, and replies to your questions about an order. We do not send marketing or promotional text messages under this program.</p>
+<h2>How to opt in</h2>
+<p>You can opt in to order and delivery texts in any of these ways:</p>
+<ul>
+<li><strong>Online:</strong> sign up at <a href="text-updates.html">www.teamr2.com/text-updates.html</a>, or check the text-updates box on our <a href="contact.html">bid request / pickup order form</a>.</li>
+<li><strong>In person or by phone:</strong> when you place an order at our shop or call {S["phone"]}, tell us you want text updates. Our staff will go over the program details with you (message types, frequency, that message and data rates may apply, and how to stop), record your consent on the order, and may ask you to sign our <a href="text-consent-form.html">text message consent form</a>.</li>
+</ul>
+<p>Consent to receive text messages is not a condition of purchase, and you can opt out at any time.</p>
 <h2>Message frequency</h2>
-<p>About 3–5 messages per order or delivery. Message and data rates may apply.</p>
-<h2>Opting out</h2>
-<p>Text <strong>STOP</strong> at any time to cancel. You will receive one confirmation message, and no further messages will be sent. Text <strong>HELP</strong> for help, or email <a href="mailto:{S["email"]}">{S["email"]}</a>.</p>
+<p>Message frequency varies by order and is typically 3–5 messages per order. Message and data rates may apply.</p>
+<h2>How to opt out</h2>
+<p>Reply <strong>STOP</strong> to any message to cancel. You will receive one confirmation message, and no further messages will be sent. To receive texts again, opt in again using one of the methods above.</p>
+<h2>Help</h2>
+<p>Reply <strong>HELP</strong> to any message, call <a href="tel:{TEL}">{S["phone"]}</a> ({S["hours"]}), or email <a href="mailto:{S["email"]}">{S["email"]}</a>.</p>
+<h2>R2 team members</h2>
+<p>R2 also sends work-related text messages to employees and crew members who opt in, such as schedule and shift changes, job-site and shop notices, and safety alerts. Team members opt in by giving the office their mobile number and signing R2’s <a href="text-consent-form.html">text message consent form</a>. Message frequency varies with the work schedule. Message and data rates may apply. Reply STOP at any time to stop, or HELP for help.</p>
 <h2>Carriers</h2>
 <p>Carriers are not liable for delayed or undelivered messages.</p>
 <h2>Privacy</h2>
-<p>We will not share your information with third parties, excluding aggregators and providers of the text messaging services. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+<p>We will not share your mobile number or text message opt-in information with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties, excluding aggregators and providers of the text messaging services. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+<h2>Changes to these terms</h2>
+<p>We may update these terms from time to time. The current version is always at <a href="sms.html">www.teamr2.com/sms.html</a>.</p>
 </div></section>''')
+
+# ---------------------------------------------------------------------------
+# TEXT UPDATES sign-up (the public SMS opt-in page Twilio reviewers are sent to)
+# ---------------------------------------------------------------------------
+PAGES["text-updates.html"] = ("Order Text Updates | Sign Up | Team R2",
+"Sign up for R2 Fabrication Order & Delivery Updates: a text when your order is received, ready for pickup, scheduled for delivery, and delivered.",
+page_hero("Text updates", "Get a text when your order is ready.",
+  "Sign up for R2 Fabrication Order &amp; Delivery Updates and we’ll text you when your order is received, ready for pickup, scheduled for delivery, and delivered.",
+  "Order text updates")
++ f'''
+<section>
+  <div class="container contact-grid">
+    <div class="panel">
+      <form id="quote-form" action="https://api.web3forms.com/submit" method="POST" data-success="Thanks — you’re signed up for order and delivery texts from R2 Fabrication.">
+        <input type="hidden" name="access_key" value="{S["web3forms_key"]}">
+        <input type="hidden" name="from_name" value="TeamR2.com website">
+        <input type="hidden" name="subject" value="SMS opt-in">
+        <input type="hidden" name="request_type" value="SMS opt-in">
+        <input type="hidden" name="redirect" value="{S["site_url"]}/thanks.html">
+        <input type="hidden" name="sms_consent_text_version" value="text-updates.html 2026-10-11">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-grid">
+          <h3 class="form-section">Your info</h3>
+          <div><label for="name">Name <span class="req">*</span></label><input id="name" name="name" type="text" autocomplete="name" required></div>
+          <div><label for="company">Company</label><input id="company" name="company" type="text" autocomplete="organization"></div>
+          <div><label for="phone">Mobile number <span class="req">*</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="817-555-0100"></div>
+          <div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
+          <div class="full"><label for="order_ref">Order, PO, or job name <span class="hint">(optional, helps us match your number to your order)</span></label><input id="order_ref" name="order_ref" type="text"></div>
+          <div class="full">
+            <label class="consent"><input type="checkbox" name="sms_consent" value="Yes - agreed to R2 Fabrication order and delivery texts" required>
+              <span>I agree to receive order and delivery text messages from R2 Fabrication, LLC (Team R2) at the mobile number above, such as order received, ready for pickup, delivery scheduled, and delivered. Message frequency varies, typically 3–5 messages per order. Message and data rates may apply. Reply STOP to cancel or HELP for help. Consent is not a condition of purchase. See our <a href="sms.html">SMS Terms &amp; Conditions</a> and <a href="privacy-policy.html">Privacy Policy</a>.</span></label>
+          </div>
+          <div class="full">
+            <button class="btn btn-primary" type="submit">Sign me up</button>
+            <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <aside>
+      <div class="panel">
+        <div class="info-block"><h3>What you’ll get</h3><p>Texts about your order only: received, ready for pickup, delivery scheduled, out for delivery, delivered, and schedule changes. No advertising.</p></div>
+        <div class="info-block"><h3>How often</h3><p>Typically 3–5 messages per order. Message and data rates may apply.</p></div>
+        <div class="info-block"><h3>How to stop</h3><p>Reply <strong>STOP</strong> to any message. Reply <strong>HELP</strong>, call <a href="tel:{TEL}">{S["phone"]}</a>, or email <a href="mailto:{S["email"]}">{S["email"]}</a> for help.</p></div>
+        <div class="info-block"><h3>Rather sign up in person?</h3><p>Tell us when you place your order at the shop or by phone. Our <a href="text-consent-form.html">consent form</a> has the same terms.</p></div>
+      </div>
+    </aside>
+  </div>
+</section>
+''')
+
+# ---------------------------------------------------------------------------
+# TEXT MESSAGE CONSENT FORM (printable; for counter sign-ups and R2 team members)
+# ---------------------------------------------------------------------------
+PAGES["text-consent-form.html"] = ("Text Message Consent Form | R2 Fabrication, LLC",
+"Printable consent form for R2 Fabrication Order & Delivery Updates (customers) and work-related text messages (R2 team members).",
+page_hero("Legal", "Text Message Consent Form",
+  "For customers who sign up at the shop or by phone, and for R2 team members. Print it, fill it out, and keep it with the order or the personnel file.",
+  "Text message consent form",
+  buttons='<div class="btn-row no-print"><button class="btn btn-primary" type="button" onclick="window.print()">Print this form</button></div>')
++ f'''
+<section><div class="container prose print-form">
+<p><strong>{S["company"]} (Team R2)</strong><br>{S["street"]}, {S["city"]}, {S["state"]} {S["zip"]} · {S["phone"]} · {S["email"]}</p>
+<h2>1. Who is signing up</h2>
+<p class="fill">Name: ______________________________________ &nbsp; Company (customers): ______________________________</p>
+<p class="fill">Mobile number: ______________________________ &nbsp; Order / PO / job (optional): ______________________</p>
+<h2>2. What you are agreeing to (check one)</h2>
+<p class="fill">☐ &nbsp;<strong>Customer:</strong> I agree to receive order and delivery text messages from R2 Fabrication, LLC (Team R2) at the mobile number above, such as order received, ready for pickup, delivery scheduled, and delivered. Message frequency varies, typically 3–5 messages per order.</p>
+<p class="fill">☐ &nbsp;<strong>R2 team member:</strong> I agree to receive work-related text messages from R2 Fabrication, LLC (Team R2) at the mobile number above, such as schedule and shift changes, job-site and shop notices, and safety alerts. Message frequency varies with the work schedule.</p>
+<p>Message and data rates may apply. Reply STOP to any message to cancel; you will receive one confirmation message and nothing further. Reply HELP, call {S["phone"]}, or email {S["email"]} for help. Consent is not a condition of purchase. We will not share your mobile number or opt-in information with third parties or affiliates for marketing or promotional purposes. Full terms: www.teamr2.com/sms.html &nbsp;·&nbsp; Privacy Policy: www.teamr2.com/privacy-policy.html</p>
+<h2>3. Signature</h2>
+<p class="fill">Signature: _________________________________________ &nbsp; Date: ________________</p>
+<p class="fill">R2 staff member who received this consent (print name): ______________________________</p>
+</div></section>
+''')
 
 # old location page → send people to the contact page's map
 LOCATION_REDIRECT = '''<!doctype html><html lang="en"><head><meta charset="utf-8">

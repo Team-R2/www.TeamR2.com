@@ -286,3 +286,13 @@ input:focus, select:focus, textarea:focus { outline: 3px solid rgba(230,92,0,.3)
 @media (max-width: 520px) { .foot-grid { grid-template-columns: 1fr; } .foot-bottom a { margin: 0 18px 0 0; } }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* Printable consent form (text-consent-form.html) */
+.print-form .fill { line-height: 2.4; }
+@media print {
+  .topbar, .site-header, .site-footer, .skip, .no-print, .crumbs { display: none !important; }
+  .page-hero { padding: 0 0 12px; background: none; border: 0; }
+  body { background: #fff; color: #000; }
+  a { color: #000; text-decoration: none; }
+  .prose { max-width: none; }
+}
