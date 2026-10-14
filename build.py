@@ -781,7 +781,7 @@ page_hero("Contact", "Request a bid",
           </fieldset>
           <div class="full">
             <label for="plans_link">Link to drawings / specs <span class="hint">(Dropbox, Google Drive, OneDrive, Box, plan room…)</span></label>
-            <input id="plans_link" name="plans_link" type="url" placeholder="https://">
+            <input id="plans_link" name="plans_link" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. dropbox.com/… or drive.google.com/…">
           </div>
           <div class="full">
             <label for="message">Tell us about the job <span class="req">*</span></label>

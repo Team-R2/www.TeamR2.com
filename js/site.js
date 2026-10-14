@@ -76,6 +76,12 @@
       var label = btn.textContent;
       btn.disabled = true; btn.textContent = 'Sending…';
       var data = new FormData(form);
+      // Drawings link: accept "dropbox.com/..." without http(s):// and add it
+      var link = (data.get('plans_link') || '').trim();
+      if (link && !/^[a-z][a-z0-9+.-]*:\/\//i.test(link) && /^[^\s]+\.[^\s]+$/.test(link)) {
+        link = 'https://' + link.replace(/^\/+/, '');
+      }
+      data.set('plans_link', link);
       // Combine checkbox groups into one readable line each
       ['duct_types', 'materials'].forEach(function (n) {
         var vals = data.getAll(n + '[]');
